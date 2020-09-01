@@ -1,0 +1,22 @@
+{
+    "name": "sylynder/plates",
+    "description": "Plates is a library forked from Slice-Library for CodeIgniter 3",
+    "type": "library",
+    "license": "MIT",
+    "authors": [{
+        "name": "Kwame Oteng Appiah-Nti",
+        "email": "developerkwame@gmail.com"
+    }],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sylynder\\Plates\\": "src/"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    }
+}

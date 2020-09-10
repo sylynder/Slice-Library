@@ -1,15 +1,17 @@
-# Slice-Library
+# Plates
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)]()
 
-Slice-Library is a CodeIgniter library that simulates Laravel's Blade templating system! Slice-Library is also compatible with Modular Extensions - HMVC; saves the compiled template in cache and is easy to use and install.
+Plates is a fork of Slice-Library by <a href="https://github.com/GustMartins">Gustavo Martins</a> which is a CodeIgniter library that simulates Laravel's Blade templating system!
+
+It is used in Webby differently that is why it was forked. 
 
 ## Features
 
 + Requires nearly zero configuration!
 + Easy to install and use.
 + Helps you organize your views folder.
-+ 30 directives to use!
-+ 89 helper functions ~(eleven required, kkk)~!
++ More directives to use!
++ Some helper functions ~(eleven required, kkk)~!
 + Does not restrict you from using plain PHP code in your views.
 + Easy to learn and to get used to.
 + Caches files until they are modified!
@@ -18,20 +20,21 @@ Slice-Library is a CodeIgniter library that simulates Laravel's Blade templating
 
 ## Requirements
 
-- PHP version 5.6 or newer is recommended.
-- CodeIgniter version 2.2.1 or newer.
+- PHP version 7.1 or newer is recommended.
+- CodeIgniter version 3.1.11 or newer 3.x.x
 
-## Instalation
+## Installation
 
-To use the Slice-Library you must first copy the file located in `application/config/slice.php` to your own `application/config/` folder. Then, edit this file according to your configurations.
-Now, copy the file `application/libraries/Slice.php` to your own `application/libraries/` folder.
+To use the plates you must first copy the file located in `config/plates.php` to your own `application/config/` folder. Then, edit this file according to your configurations.
+Now, copy the file `src/Plates.php` to your own `application/libraries/` folder.
 Finally, make sure the folder `application/cache/` has a **`0664`** permission to save the compiled templates the library will produce.
+For Webby, caches are saved at `writable/cache`.
 
 That's all! Have fun!
 
-## Loading Slice-Library
+## Loading Plates
 
-Your can load the Slice-Library as you load any other library in CodeIgniter:
+Your can load the Plates as you load any other library in CodeIgniter:
 
 ```php
 $this->load->library('slice');
@@ -39,7 +42,7 @@ $this->load->library('slice');
 
 ### Slice Helper functions
 
-Since version 1.3.0 Slice-Library comes with a helper file with 89 functions! This functions will help you a lot. Some of the are:
+Since version 1.3.0 Plates comes with a helper file with 89 functions! This functions will help you a lot. Some of the are:
 
 + `app()` - Returns any library instance
 + `decrypt()` - Decrypts a given string
@@ -67,7 +70,7 @@ This way, your libraries and helpers will be loaded automatically!
 
 ### Creating Views
 
-Slice-Library has its own `view` method to display your HTML pages. So, to show a view you can do the following:
+Plates has its own `view` method to display your HTML pages. So, to show a view you can do the following:
 
 ```php
 $this->slice->view('page', ['name' => 'GustMartins']);
@@ -195,8 +198,8 @@ After defining a translation string that has pluralization options, you may use 
 
 ## Slice Syntax
 
-Just like Laravel's Blade, Slice-Library is simple, and powerful! 
-Slice-Library does not restrict you from using plain PHP code in your views. All  Slice views are compiled into plain PHP code and cached until they are modified, meaning Slice adds essentially zero overhead to your application. Slice view files use the `.slice.php` file extension, but you can change it in the `application/config/slice.php` file.
+Just like Laravel's Blade, Plates is simple, and powerful! 
+Plates does not restrict you from using plain PHP code in your views. All  Slice views are compiled into plain PHP code and cached until they are modified, meaning Slice adds essentially zero overhead to your application. Slice view files use the `.slice.php` file extension, but you can change it in the `application/config/slice.php` file.
 
 ### Defining a Layout
 
@@ -278,7 +281,7 @@ In this example, if the `$name` variable exists, its value will be displayed. Ho
 
 ### Slice & JavaScript Frameworks
 
-Since many JavaScript frameworks also use "curly" braces to indicate a given expression should be displayed in the browser, you may use the `@` symbol to inform the Slice-Library rendering engine an expression should remain untouched. For example:
+Since many JavaScript frameworks also use "curly" braces to indicate a given expression should be displayed in the browser, you may use the `@` symbol to inform the Plates rendering engine an expression should remain untouched. For example:
 
 ```html
 <h1>Slice Library</h1>
@@ -286,7 +289,7 @@ Since many JavaScript frameworks also use "curly" braces to indicate a given exp
 Hello, @{{ username }}
 ```
 
-In this example, the `@` symbol will be removed by Slice; however, `{{ username }}` expression will remain untouched by the Slice-Library engine, allowing it to instead be rendered by your JavaScript framework.
+In this example, the `@` symbol will be removed by Slice; however, `{{ username }}` expression will remain untouched by the Plates engine, allowing it to instead be rendered by your JavaScript framework.
 
 ### If Statements
 
@@ -302,7 +305,7 @@ You may construct `if` statements using the `@if`, `@elseif`, `@else`, and `@end
 @endif
 ```
 
-Slice-Library also provides an `@unless` directive:
+Plates also provides an `@unless` directive:
 
 ```php
 @unless (count($users) != 0)
@@ -324,7 +327,7 @@ In addition to the conditional directives already discussed, you may use the `@i
 
 ### Loops
 
-Slice-Library provides simple directives for working with PHP's loop structures. Again, each of these directives functions identically to their PHP counterparts:
+Plates provides simple directives for working with PHP's loop structures. Again, each of these directives functions identically to their PHP counterparts:
 
 ```php
 @for ($i = 0; $i < 10; $i++)
@@ -412,7 +415,7 @@ Even though the included view will inherit all data available in the parent view
 @include('view.name', ['some' => 'data'])
 ```
 
-Of course, if you attempt to `@include` a view which does not exist, Slice-Library will throw an error. If you would like to include a view that may or may not be present, you should use the @includeIf directive:
+Of course, if you attempt to `@include` a view which does not exist, Plates will throw an error. If you would like to include a view that may or may not be present, you should use the @includeIf directive:
 
 ```php
 @includeIf('view.name', ['some' => 'data'])
@@ -438,9 +441,9 @@ You may also pass a fourth argument to the `@each` directive. This argument dete
 @each('view.name', $cars, 'car', 'view.empty')
 ```
 
-### Extending Slice-Library Directives
+### Extending Plates Directives
 
-Slice-Library allows you to define your own custom directives using the `directive` method. When the Slice compiler encounters the custom directive, it will call the provided callback with the expression that the directive contains.
+Plates allows you to define your own custom directives using the `directive` method. When the Slice compiler encounters the custom directive, it will call the provided callback with the expression that the directive contains.
 
 The following example creates a @slice('Text') directive which echo a given string:
 
